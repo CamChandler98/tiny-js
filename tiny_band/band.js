@@ -56,6 +56,9 @@ const generateBand = () => {
     const switchButton = document.createElement('button')
     switchButton.innerText = 'switch'
 
+    const clearButton = document.createElement('button')
+    clearButton.innerText = 'clear'
+
     const volumeSlider = document.createElement('input')
 
     volumeSlider.type = 'range'
@@ -249,6 +252,12 @@ const generateBand = () => {
         }
     }
 
+    const clearRec = () => {
+        if(!isRecording && canPlay && Rec ){
+            Rec = null
+        }
+    }
+
     //fucntion to change volume
     const changeVolume = e => {
 
@@ -276,6 +285,7 @@ const generateBand = () => {
 
     recButton.addEventListener('click', toggleRecord)
     playButton.addEventListener('click', playRecord )
+    clearButton.addEventListener('click', clearRec)
 
     volumeSlider.addEventListener('input', changeVolume)
     volumeSlider.addEventListener('input', handleInputChange)
@@ -435,5 +445,6 @@ const generateBand = () => {
     display.append(band)
     options.append(recButton)
     options.append(playButton)
+    options.append(clearButton)
     options.append(switchButton)
 }
