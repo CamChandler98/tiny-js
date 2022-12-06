@@ -142,7 +142,7 @@ const generateBand = () => {
         //define audio src url for audio element
         let soundPath = `./tiny_band/sounds/${instrument}/${note}.mp3`
 
-        const audio = new Audio(soundPath)
+        let audio = new Audio(soundPath)
         audio.dataset.startTime = new Date().getTime()
         audio.dataset.note = note
         audio.volume = globalVolume
@@ -175,7 +175,7 @@ const generateBand = () => {
             if(audio){
              audio.volume /= decayRate
                 // //console.log(audio.volume)
-                if(audio.volume <= .1){
+                if(audio.volume <= .009){
                     //console.log('cleaning up')
                 clearInterval(vibeInterval)
                 clearInterval(interval)
@@ -183,7 +183,7 @@ const generateBand = () => {
                 return
 
             }}
-        },300)
+        },90)
 
         //add current note to list of recently played notes, remove the least recent note if list is above a certain length
         recentNotes.unshift(currentNote)
@@ -429,7 +429,7 @@ const generateBand = () => {
                 // //console.log('click callback in eventListenr' ,clickFX)
                 // //console.log('click Callback return in eventlistener', clickFX())
 
-                playNote('electric_bass', notes[i][j].trim(),vibeInterval,vibeCallback,clickFX, 1.1 )
+                playNote('electric_bass', notes[i][j].trim(),vibeInterval,vibeCallback,clickFX, 1.089 )
                 //console.log('playing????', notes[i][j].trim())
 
             })
