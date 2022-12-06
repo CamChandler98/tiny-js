@@ -97,7 +97,12 @@ const generateBand = () => {
             e.target.classList.add('active')
             audio.play()
             canPlay = false
+
             playButton.classList.add('disabled')
+            if(playButton.classList.contains('active')){
+                playButton.classList.remove('active')
+            }
+
             clearButton.classList.add('disabled')
             isRecording = true;
             Rec = new SaveRec()
@@ -173,17 +178,21 @@ const generateBand = () => {
         //fade audio over time
         let interval = setInterval(()=>{
             if(audio){
-             audio.volume /= decayRate
-                // //console.log(audio.volume)
-                if(audio.volume <= .009){
-                    //console.log('cleaning up')
-                clearInterval(vibeInterval)
-                clearInterval(interval)
-                audio.pause()
-                return
 
-            }}
-        },90)
+                if(audio.volume === 1) audio.volume -= .1
+
+                audio.volume = audio.volume ** decayRate
+                    // console.log(audio.volume)
+                if(audio.volume <= .067){
+                    // console.log('cleaning up')
+                    clearInterval(vibeInterval)
+                    clearInterval(interval)
+                    audio.pause()
+                    return
+
+                }
+            }
+        },5)
 
         //add current note to list of recently played notes, remove the least recent note if list is above a certain length
         recentNotes.unshift(currentNote)
@@ -429,7 +438,7 @@ const generateBand = () => {
                 // //console.log('click callback in eventListenr' ,clickFX)
                 // //console.log('click Callback return in eventlistener', clickFX())
 
-                playNote('electric_bass', notes[i][j].trim(),vibeInterval,vibeCallback,clickFX, 1.089 )
+                playNote('electric_bass', notes[i][j].trim(),vibeInterval,vibeCallback,clickFX, 1.0058 )
                 //console.log('playing????', notes[i][j].trim())
 
             })

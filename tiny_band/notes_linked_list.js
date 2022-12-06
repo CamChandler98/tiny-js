@@ -20,7 +20,27 @@ class AudioNode {
         // //console.log('clickFx',this.clickFX )
         this.clickFX()
         this.vibrate()
-        return await this.value.play()
+        this.value.play()
+
+        let interval = setInterval(()=>{
+            if(this.value){
+                console.log(this.value.volume)
+                if(this.value.volume === 1) this.value.volume -= .1
+
+                    this.value.volume = this.value.volume ** 1.0058
+
+                    if(this.value.volume <= .067){
+                        console.log('cleaning up')
+                        clearInterval(vibeInterval)
+                        clearInterval(interval)
+                        this.value.pause()
+                        return
+
+                    }}else{
+                        console.log('where is the note?')
+                    }
+        },5)
+        
     }
 }
 
@@ -79,18 +99,7 @@ class SaveRec {
             // //console.log(currentNote.name, typeof currentNote.next.name)
 
             currentNote.play()
-            let interval = setInterval(()=>{
-                if(currentNote){
-                 currentNote.volume /= 1.1
-                    // //console.log(currentNote.volume)
-                    if(currentNote.volume <= .001){
-                        // //console.log('cleaning up')
-                    clearInterval(vibeInterval)
-                    clearInterval(interval)
-                    currentNote.pause()
-                    return
-                }}
-            },200)
+            console.log('can i see htis note', currentNote)
 
             //console.log('wating', currentNote.timeToNext)
             await wait(currentNote.timeToNext)
