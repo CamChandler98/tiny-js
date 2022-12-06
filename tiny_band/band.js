@@ -47,7 +47,7 @@ const generateBand = () => {
     //generate elements
     const recButton = document.createElement('button')
     recButton.innerText = 'record'
-    recButton.classList.add('op')
+    recButton.classList.add('op', 'band')
 
     const playButton = document.createElement('button')
     playButton.innerText = 'play'
@@ -368,7 +368,7 @@ const generateBand = () => {
 
             effect.style = `--color: ${darkColors[i]}; --animD: ${animD}s`
             effect.style.zIndex = 4
-            tab.innerText = notes[i][j].trim()
+            // tab.innerText = notes[i][j].trim()
             tab.dataset.note = notes[i][j]
             tab.style.backgroundColor = colors[i]
             tab.style.color = 'white'
