@@ -90,8 +90,12 @@ const generateBand = () => {
 
     //function to toggle recording
     const toggleRecord = async (e) => {
+        let soundPath = `./tiny_band/sounds/stock/beep.wav`
+        const audio = new Audio(soundPath)
+        audio.volume = .1
         if(!isRecording){
             e.target.classList.add('active')
+            audio.play()
             canPlay = false
             playButton.classList.add('disabled')
             clearButton.classList.add('disabled')
@@ -99,21 +103,23 @@ const generateBand = () => {
             Rec = new SaveRec()
             currentNote = null
         }else {
-
+            audio.play()
             if(currentNote){
                     currentNote.volume = globalVolume
-                    console.log('adding' ,currentNote.dataset.note)
+                    //console.log('adding' ,currentNote.dataset.note)
                     Rec.addToTail(currentNote, null, currentNote.dataset.note, currentNote.vibe, currentNote.clickFX)
-                    console.log(Rec.elements)
-                    if(currentNote.volume > .5){
-                        await wait(100)
+                    //console.log(Rec.elements)
+                    if(currentNote.volume > .2){
+                        console.log('waiting')
+                        await wait(500)
                     }
                 }
-
                 e.target.classList.remove('active')
                 isRecording = false
+                if(Rec.length){
                 playButton.classList.remove('disabled')
                 clearButton.classList.remove('disabled')
+                }
                 canPlay = true
 
         }
@@ -143,15 +149,15 @@ const generateBand = () => {
 
         //check to see if a note has been played and recording has been toggled if so normalize volume and add note to recoded notes
         if(currentNote && isRecording){
-            console.log('takking a look at ', currentNote)
+            //console.log('takking a look at ', currentNote)
             let ttn = timeElapsed(currentNote.dataset.startTime)
-            console.log(ttn)
+            //console.log(ttn)
 
                 currentNote.volume = globalVolume
 
                 Rec.addToTail(currentNote, ttn, currentNote.dataset.note, currentNote.vibe,currentNote.clickFX )
 
-                console.log('number of notes added to linked list:', Rec.length)
+                //console.log('number of notes added to linked list:', Rec.length)
             }
 
 
@@ -167,9 +173,9 @@ const generateBand = () => {
         let interval = setInterval(()=>{
             if(audio){
              audio.volume /= decayRate
-                // console.log(audio.volume)
+                // //console.log(audio.volume)
                 if(audio.volume <= .1){
-                    console.log('cleaning up')
+                    //console.log('cleaning up')
                 clearInterval(vibeInterval)
                 clearInterval(interval)
                 audio.pause()
@@ -187,7 +193,7 @@ const generateBand = () => {
 
     //function to vibrate a line made using a canvas and bezier curve
     const vibrateString = (canvas, context, amplitude, decayRate, startCoordinate, end, cp1, cp2, color )=> {
-        console.log('vibrateString', color)
+        //console.log('vibrateString', color)
 
         let absoluteAmplitude = Math.abs(amplitude)
 
@@ -212,7 +218,7 @@ const generateBand = () => {
             absoluteAmplitude = absoluteAmplitude.toFixed(2)
 
             if(absoluteAmplitude <=0){
-                console.log('clearing vibe')
+                //console.log('clearing vibe')
                 clearInterval(vibeInterval)
             }
 
@@ -223,9 +229,9 @@ const generateBand = () => {
 
     //funciton to vibrate kalimba key made from div
     const vibrateKey = (key, amplitude, decayRate) => {
-        console.log('starting vibration for', key)
+        //console.log('starting vibration for', key)
         let absoluteAmplitude = Math.abs(amplitude)
-        console.log('vibrating key')
+        //console.log('vibrating key')
         let vibeInterval = setInterval(()=>{
             let lastDigit = Number(String(absoluteAmplitude).slice(-1))
             let relAmplitude = parseFloat(absoluteAmplitude)
@@ -239,7 +245,7 @@ const generateBand = () => {
             absoluteAmplitude = absoluteAmplitude.toFixed(2)
 
             if(absoluteAmplitude <=0){
-                console.log('clearing vibe')
+                //console.log('clearing vibe')
                 clearInterval(vibeInterval)
                 // key.style.transform = null
                 key.style.filter = null
@@ -255,9 +261,11 @@ const generateBand = () => {
         }
     }
 
-    const clearRec = () => {
+    const clearRecord = () => {
         if(!isRecording && canPlay && Rec ){
             Rec = null
+            playButton.classList.add('disabled')
+            clearButton.classList.add('disabled')
         }
     }
 
@@ -282,13 +290,13 @@ const generateBand = () => {
         const min = target.min
         const max = target.max
         const val = target.value
-        console.log('min:',min, 'max:',max, 'val:',val)
+        //console.log('min:',min, 'max:',max, 'val:',val)
         target.style.backgroundSize = (((val - min) * 100) / (max - min) )+ '% 100%'
       }
 
     recButton.addEventListener('click', toggleRecord)
     playButton.addEventListener('click', playRecord )
-    clearButton.addEventListener('click', clearRec)
+    clearButton.addEventListener('click', clearRecord)
 
     volumeSlider.addEventListener('input', changeVolume)
     volumeSlider.addEventListener('input', handleInputChange)
@@ -304,7 +312,7 @@ const generateBand = () => {
         for(let i = 0; i < kalimbaNotes.length; i++){
             let key = document.createElement('div')
             key.classList.add('key')
-            // console.log(kalimbaNotes[i], kalimbaHeights[i])
+            // //console.log(kalimbaNotes[i], kalimbaHeights[i])
             key.dataset.note = kalimbaNotes[i]
             key.style.maxHeight = kalimbaHeights[i]
             // key.style.width = '20px'
@@ -319,13 +327,13 @@ const generateBand = () => {
 
                     return function(){
                         vibrateKey(key,amplitude, decayRate)
-                        console.log('vibing')
+                        //console.log('vibing')
                     }
                 }
 
                 function clickFX(){
                     return function(){
-                        console.log('an effect?')
+                        //console.log('an effect?')
                     }
                 }
 
@@ -390,7 +398,7 @@ const generateBand = () => {
 
             effect.addEventListener('click', (e)=> {
                 e.stopPropagation()
-                console.log(`clicking ${notes[i][j]}`)
+                //console.log(`clicking ${notes[i][j]}`)
                 e.target.classList.add('effect')
 
                 let eTimeout = setTimeout(()=>{
@@ -408,19 +416,19 @@ const generateBand = () => {
 
                 function clickFX(){
                     return function(){
-                        // console.log(`clicking ${notes[i][j]}`)
+                        // //console.log(`clicking ${notes[i][j]}`)
                         effect.click()
                     }
                 }
                 let vibeInterval = vibrateString(canvas,context,5,0.07,start,end, cp1,cp2,colors[i])
                 effect.click()
-                // console.log('vibe callback in eventListener', vibeCallback)
-                // console.log('vibeCallback return in eventlistener', vibeCallback()())
-                // console.log('click callback in eventListenr' ,clickFX)
-                // console.log('click Callback return in eventlistener', clickFX())
+                // //console.log('vibe callback in eventListener', vibeCallback)
+                // //console.log('vibeCallback return in eventlistener', vibeCallback()())
+                // //console.log('click callback in eventListenr' ,clickFX)
+                // //console.log('click Callback return in eventlistener', clickFX())
 
                 playNote('electric_bass', notes[i][j].trim(),vibeInterval,vibeCallback,clickFX, 1.1 )
-                console.log('playing????', notes[i][j].trim())
+                //console.log('playing????', notes[i][j].trim())
 
             })
 
@@ -435,7 +443,7 @@ const generateBand = () => {
 
 
     const switchInstruments = () =>{
-        console.log('here')
+        //console.log('here')
         instrumentGetters.unshift(instrumentGetters.pop())
         activeInstrument.remove()
         instrumentGetters[0]()
