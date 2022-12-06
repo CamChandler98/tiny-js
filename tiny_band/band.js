@@ -350,7 +350,7 @@ const generateBand = () => {
 
                 vibrateKey(key, amplitude, decayRate)
 
-                playNote('kalimba', kalimbaNotes[i], null, vibeCallback, clickFX, 1.1)
+                playNote('kalimba', kalimbaNotes[i], null, vibeCallback, clickFX, 1.0057)
             })
             keyBoard.append(key)
         }
@@ -438,7 +438,7 @@ const generateBand = () => {
                 // //console.log('click callback in eventListenr' ,clickFX)
                 // //console.log('click Callback return in eventlistener', clickFX())
 
-                playNote('electric_bass', notes[i][j].trim(),vibeInterval,vibeCallback,clickFX, 1.0058 )
+                playNote('electric_bass', notes[i][j].trim(),vibeInterval,vibeCallback,clickFX, 1.0057 )
                 //console.log('playing????', notes[i][j].trim())
 
             })

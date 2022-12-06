@@ -19,7 +19,7 @@ class AudioNode {
         this.value.volume = 1
         // //console.log('clickFx',this.clickFX )
         this.clickFX()
-        this.vibrate()
+        let vibeInterval = this.vibrate()
         this.value.play()
 
         let interval = setInterval(()=>{
@@ -27,7 +27,7 @@ class AudioNode {
                 console.log(this.value.volume)
                 if(this.value.volume === 1) this.value.volume -= .1
 
-                    this.value.volume = this.value.volume ** 1.0058
+                    this.value.volume = this.value.volume ** 1.0057
 
                     if(this.value.volume <= .067){
                         console.log('cleaning up')
