@@ -33,6 +33,9 @@
 
     /* min-height: 90%; */
 }
+#band.active{
+    color: #79B473;
+}
 
 .string{
     padding: .5rem 0;
