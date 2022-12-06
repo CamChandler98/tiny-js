@@ -446,7 +446,40 @@ const generateBand = () => {
 
     const switchInstruments = () =>{
         //console.log('here')
+        let kalimbaPath = `./tiny_band/sounds/kalimba/Eb7.mp3`
+        let bassPath = `./tiny_band/sounds/electric_bass/Eb1.mp3`
+
+
         instrumentGetters.unshift(instrumentGetters.pop())
+        let currentInstrument = instrumentGetters[0]
+
+        let audio
+
+        const fadeAudio = (audio) => {
+            let interval = setInterval(()=>{
+                if(audio){
+                 audio.volume /= 1.02
+                    // //console.log(audio.volume)
+                    if(audio.volume <= .09){
+                        //console.log('cleaning up')
+                    audio.pause()
+                    clearInterval(interval)
+                    return
+                }}
+            },25)
+        }
+        switch(currentInstrument){
+            case getBass:
+                audio = new Audio(bassPath)
+                audio.play()
+                fadeAudio(audio)
+                break;
+            case getKalimba:
+                audio = new Audio(kalimbaPath)
+                audio.play()
+                fadeAudio(audio)
+                break;
+        }
         activeInstrument.remove()
         instrumentGetters[0]()
     }
