@@ -51,11 +51,11 @@ const generateBand = () => {
 
     const playButton = document.createElement('button')
     playButton.innerText = 'play'
-    playButton.classList.add('disabled')
+    playButton.classList.add('disabled', 'band')
 
     const clearButton = document.createElement('button')
     clearButton.innerText = 'clear'
-    clearButton.classList.add('disabled')
+    clearButton.classList.add('disabled', 'band')
 
     const switchButton = document.createElement('button')
     switchButton.innerText = 'switch'
@@ -118,6 +118,7 @@ const generateBand = () => {
                 isRecording = false
                 if(Rec.length){
                 playButton.classList.remove('disabled')
+                playButton.classList.add('active')
                 clearButton.classList.remove('disabled')
                 }
                 canPlay = true
@@ -265,6 +266,7 @@ const generateBand = () => {
         if(!isRecording && canPlay && Rec ){
             Rec = null
             playButton.classList.add('disabled')
+            playButton.classList.remove('active')
             clearButton.classList.add('disabled')
         }
     }
