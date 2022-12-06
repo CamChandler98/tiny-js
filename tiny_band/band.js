@@ -53,11 +53,13 @@ const generateBand = () => {
     playButton.innerText = 'play'
     playButton.classList.add('disabled')
 
+    const clearButton = document.createElement('button')
+    clearButton.innerText = 'clear'
+    clearButton.classList.add('disabled')
+
     const switchButton = document.createElement('button')
     switchButton.innerText = 'switch'
 
-    const clearButton = document.createElement('button')
-    clearButton.innerText = 'clear'
 
     const volumeSlider = document.createElement('input')
 
@@ -92,25 +94,26 @@ const generateBand = () => {
             e.target.classList.add('active')
             canPlay = false
             playButton.classList.add('disabled')
+            clearButton.classList.add('disabled')
             isRecording = true;
             Rec = new SaveRec()
             currentNote = null
         }else {
 
             if(currentNote){
-
                     currentNote.volume = globalVolume
                     console.log('adding' ,currentNote.dataset.note)
                     Rec.addToTail(currentNote, null, currentNote.dataset.note, currentNote.vibe, currentNote.clickFX)
                     console.log(Rec.elements)
-
                     if(currentNote.volume > .5){
                         await wait(100)
                     }
                 }
+
                 e.target.classList.remove('active')
                 isRecording = false
                 playButton.classList.remove('disabled')
+                clearButton.classList.remove('disabled')
                 canPlay = true
 
         }
