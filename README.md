@@ -3,9 +3,9 @@
 
 Tiny Apps(JS) is an app to explore what JavaScript can do right out of the box! Since this app is 'tiny', bloat from external libraries will be avoided as much as possible. There will be a variety of applications to explore, so please take a look around and let me show you the power of JavaScript!
 
-***
+Live: [Tiny Apps](https://camchandler98.github.io/tiny-js/)
 
-### Development
+# Development
 
 
 
@@ -13,38 +13,40 @@ Tiny Apps(JS) is an app to explore what JavaScript can do right out of the box! 
     1. Clone the [repository](https://github.com/CamChandler98/tiny-js)
 
 Thats it! Since simplicity is one of the goals of this project it's easy to jump in and get to work! If you create any tiny apps of your own please share them!
-***
-### Apps
 
-Tiny Apps is always expanding so please check back for new apps to enjoy!
+# Apps
 
-### Tiny Band
-Become a One Man Band with Tiny Band! 
+  Tiny Apps is always expanding so please check back for new apps to enjoy!
+
+## **Tiny Band**
+
+***Become a One Man Band with Tiny Band!***
+
+<p align = "center">
+<img alt="Tiny Band" src="https://raw.githubusercontent.com/CamChandler98/tiny-assets/main/tiny_band_screen_cap.png?token=GHSAT0AAAAAAB4CLABTFWQGTX2ELQ3AP54MY4RETWQ" width="400" height="400">
+</p>
 
 This app simulates instruments using ````HTML Audio```` elements to produce sound and ````HTML Canvas```` elements to provide the user interface.
-
-SC HERE!!!!!!!!!!!
 
 ### Play a variety of instruments with just a click!
 
 * Click the elements under the instrument name to play notes!
-* Click the "Recrod" button to record your playing! You can even switch instruments while recording!
+* Click the "Record" button to record your playing! You can even switch instruments while recording!
 * Click the record button again to stop recording and then click the "Play" button to playback your recording.
 * Make room for a new Jam Session by clicking the "Clear Button"!
 
 ***
 
-## Code Highlights
+# Code Highlights
 A selection of code snippets that really show what JS can do!
 
-### Tiny Band
+##  Tiny Band
 
-#### Vibrate a String
+### Vibrate a String
 
 This function uses HTML Canvas elements to simulate a vibrating string.
 
-<details>
-<summary>Click to see <code>vibrateString</code> function </summary>
+
 
 ````javascript
 const vibrateString = (canvas, context, amplitude, decayRate, startCoordinate, end, cp1, cp2, color )=> {
@@ -77,10 +79,9 @@ const vibrateString = (canvas, context, amplitude, decayRate, startCoordinate, e
 }
 ````
 
-</details>
 
 
-Key Points:
+#### Key Points:
 
 * Strings are rendered using ````HTML Canvas```` elements.
 * The amplitude of the wave is defined using the parameter ````amplitude````.
@@ -91,8 +92,6 @@ Key Points:
 
 Finally a reason to put all of the DSA grinding to use! This functionality uses a class for audio data as nodes and a class for recording as a ````linked list````!
 
-<details>
-<summary>Click to see <code>play</code> method</summary>
 
 ````javascript
     async play(){
@@ -111,10 +110,7 @@ Finally a reason to put all of the DSA grinding to use! This functionality uses 
 
     }
 ````
-</details>
 
-<details>
-<summary>Click to see <code>record</code> method </summary>
 
 ````javascript
     recordNote(val, ttn, name, vibrate, clickFX) {
@@ -138,8 +134,7 @@ Finally a reason to put all of the DSA grinding to use! This functionality uses 
     }
 
 ````
-</details>
-&nbsp
+
 
 <u> Key Points: </u>
 
