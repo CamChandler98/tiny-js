@@ -5,7 +5,7 @@ Tiny Apps(JS) is an app to explore what JavaScript can do right out of the box! 
 
 ***
 
-## Development
+### Development
 
 
 
@@ -14,11 +14,11 @@ Tiny Apps(JS) is an app to explore what JavaScript can do right out of the box! 
 
 Thats it! Since simplicity is one of the goals of this project it's easy to jump in and get to work! If you create any tiny apps of your own please share them!
 ***
-## Apps
+### Apps
 
 Tiny Apps is always expanding so please check back for new apps to enjoy!
 
-## Tiny Band
+### Tiny Band
 Become a One Man Band with Tiny Band! 
 
 This app simulates instruments using ````HTML Audio```` elements to produce sound and ````HTML Canvas```` elements to provide the user interface.
@@ -36,9 +36,10 @@ SC HERE!!!!!!!!!!!
 
 ## Code Highlights
 A selection of code snippets that really show what JS can do!
-## Tiny Band
 
-### Vibrate a String
+### Tiny Band
+
+#### Vibrate a String
 
 This function uses HTML Canvas elements to simulate a vibrating string.
 
@@ -77,9 +78,9 @@ const vibrateString = (canvas, context, amplitude, decayRate, startCoordinate, e
 ````
 
 </details>
-&nbsp
 
-<u> Key Points: </u>
+
+Key Points:
 
 * Strings are rendered using ````HTML Canvas```` elements.
 * The amplitude of the wave is defined using the parameter ````amplitude````.
