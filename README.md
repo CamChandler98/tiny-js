@@ -19,11 +19,9 @@ Thats it! Since simplicity is one of the goals of this project it's easy to jump
   Tiny Apps is always expanding so please check back for new apps to enjoy!
 
 ## **Tiny Band**
-
 ***Become a One Man Band with Tiny Band!***
-
 <p align = "center">
-<img alt="Tiny Band" src="https://raw.githubusercontent.com/CamChandler98/tiny-assets/main/tiny_band_screen_cap.png?token=GHSAT0AAAAAAB4CLABTFWQGTX2ELQ3AP54MY4RETWQ" width="400" height="400">
+<img alt="Tiny Band" src="https://github.com/CamChandler98/tiny-assets/blob/main/tiny_band_screen_cap.png" width="400" height="400">
 </p>
 
 This app simulates instruments using ````HTML Audio```` elements to produce sound and ````HTML Canvas```` elements to provide the user interface.
