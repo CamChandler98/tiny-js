@@ -20,27 +20,7 @@ class AudioNode {
         // //console.log('clickFx',this.clickFX )
         this.clickFX()
         let vibeInterval = this.vibrate()
-        this.value.play()
-
-        let interval = setInterval(()=>{
-            if(this.value){
-                console.log(this.value.volume)
-                if(this.value.volume === 1) this.value.volume -= .1
-
-                    this.value.volume = this.value.volume ** 1.0057
-
-                    if(this.value.volume <= .067){
-                        console.log('cleaning up')
-                        clearInterval(vibeInterval)
-                        clearInterval(interval)
-                        this.value.pause()
-                        return
-
-                    }}else{
-                        console.log('where is the note?')
-                    }
-        },5)
-        
+        return await this.value.play()
     }
 }
 
@@ -72,13 +52,14 @@ class SaveRec {
 
     addToTail(val, ttn, name, vibrate, clickFX) {
         // Add node of val to tail of linked list
-        // val.volume = 1
+        val.volume = 1
         // //console.log('ll vol', val.volume, name)
         let newNode = new AudioNode(val,ttn, name, vibrate, clickFX)
 
         if (this.length === 0){
             this.head = newNode;
             this.tail = newNode;
+            this.elements.push(newNode)
             this.length++
             return
         }
@@ -86,7 +67,7 @@ class SaveRec {
         oldTail.next = newNode;
         newNode.prev = oldTail;
         this.tail = newNode;
-        this.elements.push(name)
+        this.elements.push(newNode)
         this.length++
     }
 
@@ -94,18 +75,24 @@ class SaveRec {
         if(this.length === 0) return
 
         let currentNote = this.head
-        //console.log('starting playback', this.elements)
+        currentNote.value.volume = 1
+        console.log('starting playback', this.elements.map(el => el.value.volume))
+        let last
         while(currentNote){
             // //console.log(currentNote.name, typeof currentNote.next.name)
-
+            currentNote.value.volume = 1
             currentNote.play()
-            console.log('can i see htis note', currentNote)
-
             //console.log('wating', currentNote.timeToNext)
             await wait(currentNote.timeToNext)
             //console.log('getting next')
+            currentNote.value.volume = 1
+            if(!currentNote.next){
+                currentNote.volume = 1
+            }
             currentNote = currentNote.next
         }
-        //console.log('playback finished')
+
+        await wait(3000)
+        return true
     }
 }

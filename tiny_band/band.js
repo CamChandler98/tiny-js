@@ -122,8 +122,8 @@ const generateBand = () => {
                 e.target.classList.remove('active')
                 isRecording = false
                 if(Rec.length){
+                await wait (700)
                 playButton.classList.remove('disabled')
-                playButton.classList.add('active')
                 clearButton.classList.remove('disabled')
                 }
                 canPlay = true
@@ -265,9 +265,16 @@ const generateBand = () => {
     }
 
     //function to play recorded notes
-    const playRecord = () => {
+    const playRecord = async () => {
         if(!isRecording && canPlay && Rec){
-            Rec.play()
+            canPlay = false
+            playButton.classList.add('active')
+            await Rec.play()
+            canPlay = true
+            playButton.classList.remove('active')
+
+        }else if(!canPlay){
+            console.log('cant play')
         }
     }
 
