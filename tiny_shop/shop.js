@@ -157,6 +157,7 @@ const generateShop = async () => {
         localStorage.setItem('total', NewCart.total)
         cart.innerHTML = null
         cart.innerText= 'Thanks for shopping!'
+        cartButton.innerText = 'Back to Shop'
     }
 
 
