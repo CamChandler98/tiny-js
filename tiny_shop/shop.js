@@ -73,53 +73,40 @@ let localTotal = JSON.parse(localStorage.getItem('total')) || 0.00
 
 const generateShop = async () => {
 
-    // const shop = document.createElement('div');
-     $('#display').append(jQuery('<div>', {
-        id: 'shop',
-        css : {
-            border: `5px solid ${appList[0].color}`
-        }
-
-    }))
+    const shop = document.createElement('div');
 
 
+    shop.id = 'shop'
 
+    shop.style.border = `5px solid ${appList[0].color}`
+
+    display.append(shop)
     let NewCart = new Cart(localItems, localTotal)
 
     let items = Object.values(seedItems)
 
-    // let cartButton = document.createElement('button')
-    // cartButton.innerText = `Total: $${NewCart.total.toFixed(2)}`
+    let cartButton = document.createElement('button')
+    cartButton.innerText = `Total: $${NewCart.total.toFixed(2)}`
+    options.append(cartButton)
 
-    $('#options').append(
-        jQuery(
-            '<button></button>',
-            {
-                id : 'cartButton'
-            }
-        ).text(`Total: $${NewCart.total.toFixed(2)}`)
-    )
 
     let cartOpen = false
 
     const updateCart = (total) => {
-    //   cartButton.innerText = `Total: $${NewCart.total.toFixed(2)}`
+      cartButton.innerText = `Total: $${NewCart.total.toFixed(2)}`
 
-    $('#cartButton').text(`Total: $${NewCart.total.toFixed(2)}`)
+   
     }
 
 
-    // let shelves = document.createElement('div')
-    // shelves.id = 'shelves'
-    // let shopTitle = document.createElement('h2')
-    // shopTitle.innerText = "Bizarre Bazaar"
-    // shelves.append(shopTitle)
+    let shelves = document.createElement('div')
+    shelves.id = 'shelves'
+    let shopTitle = document.createElement('h2')
+    shopTitle.innerText = "Bizarre Bazaar"
+    shelves.append(shopTitle)
 
-    $('#shop').append(jQuery('<div>',{
-        id: 'shelves',
-    }).append(jQuery(
-        '<h2></h2>'
-    ).html('Bizarre Bazaar')))
+    shop.append(shelves)
+
 
 
     const stockShelves = () => {
@@ -151,7 +138,7 @@ const generateShop = async () => {
             newItem.append(price)
             newItem.append(buyButton)
 
-            $('#shelves').append(newItem)
+            shelves.append(newItem)
         })
 
     }
@@ -210,35 +197,34 @@ const generateShop = async () => {
             cart.append(itemDis)
         }
 
-        // shelves.remove()
-
-        $('#shelves').remove()
-
         cart.append(checkoutButton)
-        $('#shop').append(cart)
+        shop.append(cart)
         cartOpen = true
+        shelves.remove()
+        console.log(cartOpen)
     }
 
 
     const showShelves = () => {
         cart.remove()
-        // shop.append(shelves)
-        $('#shop').append(jQuery('<div>',{
-            id: 'shelves',
-        }).append(jQuery(
-            '<h2></h2>'
-        ).html('Bizarre Bazaar')))
-        stockShelves()
+        shop.append(shelves)
+
+        // stockShelves()
         cartOpen = false
     }
 
-    $('#cartButton').click(  () => {
-        if(cartOpen){
+
+
+    cartButton.addEventListener('click', ()=> {
+        console.log('clicked cart button')
+        if(cartOpen === true){
+            console.log('cartOpen is true')
             showShelves()
             updateCart()
         }else{
+            console.log('cart open is not true')
             showCart()
-            $('#cartButton').text('Back to Shop')
+            cartButton.innerText = 'Back to Shop'
         }
     })
 

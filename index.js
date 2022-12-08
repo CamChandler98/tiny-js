@@ -16,6 +16,8 @@ const render = async appName => {
     switch(appName) {
         case('band'):
         return generateBand();
+        case('shop'):
+        return generateShop();
         default:
             return;
     }

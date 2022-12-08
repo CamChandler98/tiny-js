@@ -7,5 +7,9 @@ let apps = {
     band:{
         name: 'band',
         color: '#79B473'
+    },
+    shop: {
+        name: 'shop',
+        color: '#7A89C2'
     }
 }
