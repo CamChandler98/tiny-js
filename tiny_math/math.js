@@ -61,10 +61,18 @@ const generateMath = () => {
                 state.total -= currentValue || 0;
                 break;
             case('mult'):
-                state.total *= currentValue || 1;
+                if(currentValue === 0){
+                    state.total *= currentValue
+                }else{
+                    state.total *= currentValue || 1;
+                }
                 break;
             case('div'):
-                state.total /= currentValue || 1;
+            if(currentValue === 0){
+                state.total *= currentValue
+            }else{
+                state.total *= currentValue || 1;
+            }
                 break;
         }
 
