@@ -14,7 +14,7 @@ const cleanUp = () => {
 const render = async appName => {
     cleanUp();
     switch(appName) {
-        case('math'):
+        case('calc'):
         return generateMath();
         case('band'):
         return generateBand();

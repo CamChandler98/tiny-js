@@ -77,6 +77,11 @@ const generateMath = () => {
         }
 
         state.currentInput = '';
+        if(state.total.toString().length >= 15){
+            lcd.style.overflowX = 'scroll'
+        }else{
+            lcd.style.overflowX = 'hidden'
+        }
         lcd.innerHTML = state.total.toString().includes('.') ? state.total.toFixed(3) : state.total
     }
 
