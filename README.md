@@ -33,6 +33,21 @@ This app simulates instruments using ````HTML Audio```` elements to produce soun
 * Click the record button again to stop recording and then click the "Play" button to playback your recording.
 * Make room for a new Jam Session by clicking the "Clear Button"!
 
+## **Tiny Calc**
+***Make a calculated move with Tiny Calc!***
+<p align = "center">
+<img alt="Tiny Band" src="https://github.com/CamChandler98/tiny-assets/blob/main/tiny_calc_screen_cap.png" width="400" height="400">
+</p>
+
+This app is a calculator inspired by the ti30x
+
+### Do math just like when you were a kid!
+
+* Click the number keys to enter a number
+* Click an operation button to ready an operation
+* Enter another number
+* Click enter and marvel!
+
 ***
 
 # Code Highlights

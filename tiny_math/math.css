@@ -1,0 +1,52 @@
+#math {
+    height: 500px;
+    width: 500px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+#lcd {
+    /* min-width: 350px; */
+    text-align: right;
+    padding: 1rem;
+    font-size: 2.5rem;
+
+
+    border: 1px solid #eaeaea;
+    border-radius: 0.25rem;
+}
+
+#lcd ::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+#lcd::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+
+#numbers {
+    align-content: center;
+    width: 100%;
+    font-size: 1rem;
+}
+
+#numbers button {
+    width: 30%;
+    height: 20%;
+    padding: 1rem;
+}
+
+.active{
+    color: #E91E63;
+}
+
+@media screen and (max-width: 400px){
+    #math{
+        width:auto;
+        padding: 0%;
+    }
+
+}
