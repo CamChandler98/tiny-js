@@ -77,7 +77,7 @@ const generateMath = () => {
         }
 
         state.currentInput = '';
-        lcd.innerHTML = state.total.toFixed(5);
+        lcd.innerHTML = state.total.toString().includes('.') ? state.total.toFixed(3) : state.total
     }
 
     // handle operation input
