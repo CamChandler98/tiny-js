@@ -33,20 +33,6 @@
 
     /* min-height: 90%; */
 }
-@keyframes textColorChange {
-    0% {color: #79B473;}
-    50% {color: #17e800;}
-    100% {color: #79B473;;}
-}
-
-
-
-   
-.band.active{
-    color: #79B473; 
-    animation: textColorChange 1.2s infinite;
-}
-
 
 .string{
     padding: .5rem 0;
@@ -88,7 +74,7 @@
     color: gray;
 }
 .disabled:hover{
-    cursor: default;
+    cursor: pointer;
 }
 .effect{
     /* transform: scale(1.5); */
