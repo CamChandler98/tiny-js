@@ -22,15 +22,15 @@ const render = async appName => {
         return generateNotes();
         // case('chat'):
         // return generateChat();
-        case('map'):
+        // case('map'):
         // return generateMap();
-        // case('art'):
+        case('art'):
         return generateArt();
         case('ask'):
         return generateAsk();
-        case('feed'):
+        // case('feed'):
         // return generateFeed();
-        // case('shop'):
+        case('shop'):
         return generateShop();
         default:
             return;
