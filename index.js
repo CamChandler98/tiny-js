@@ -20,17 +20,17 @@ const render = async appName => {
         return generateBand();
         case('note'):
         return generateNotes();
-        case('chat'):
-        return generateChat();
+        // case('chat'):
+        // return generateChat();
         case('map'):
-        return generateMap();
-        case('art'):
+        // return generateMap();
+        // case('art'):
         return generateArt();
         case('ask'):
         return generateAsk();
         case('feed'):
-        return generateFeed();
-        case('shop'):
+        // return generateFeed();
+        // case('shop'):
         return generateShop();
         default:
             return;
