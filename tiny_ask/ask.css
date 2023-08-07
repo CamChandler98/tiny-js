@@ -1,0 +1,26 @@
+#ask{
+    height: 500px;
+    width: 500px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+#ask h2 {
+    font-size: 1.5rem;
+}
+
+#answerContainer{
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    overflow-x: hidden;
+    /* min-width: 100%;
+    min-height: 100%; */
+}
+
+.answerHeader{
+    font-size: 1rem;
+}

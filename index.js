@@ -14,10 +14,24 @@ const cleanUp = () => {
 const render = async appName => {
     cleanUp();
     switch(appName) {
-        case('calc'):
-        return generateMath();
+        case('math'):
+            return generateMath();
         case('band'):
         return generateBand();
+        case('note'):
+        return generateNotes();
+        case('chat'):
+        return generateChat();
+        case('map'):
+        return generateMap();
+        case('art'):
+        return generateArt();
+        case('ask'):
+        return generateAsk();
+        case('feed'):
+        return generateFeed();
+        case('shop'):
+        return generateShop();
         default:
             return;
     }
@@ -63,5 +77,8 @@ document.addEventListener('error' , (e)=> {
 })
 
 document.addEventListener('DOMContentLoaded', () => {
+
     setDisplay();
+    // generateBand()
+    // generateNotes()
 });

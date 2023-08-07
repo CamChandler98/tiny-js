@@ -1,0 +1,80 @@
+#notebook {
+    height: 500px;
+    width: 500px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    /* overflow: scroll; */
+    overflow-x: hidden;
+
+}
+
+#notebook form{
+   height: 100%;
+    gap:.5rem;
+
+}
+.noteContainer{
+    height: 100%;
+    width: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.note {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: left;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    height: 20%;
+    border: 1px solid #eaeaea;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    display: flex ;
+}
+.signup-form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 0%;
+    padding: 1rem;
+}
+.signup-form *{
+    font-size:  1rem;
+}
+.signup-form h2{
+    /* margin-top: 0%; */
+    font-size: 1.5rem;
+}
+.form-group{
+    display: flex;
+    flex-direction: column;
+    margin: 3% 0;
+}
+.form-group label{
+    text-align: left;
+    margin-bottom: 2%;
+}
+.errorContainer{
+    display: flex;
+    flex-direction: column;
+}
+.errorText{
+    color: red
+}
+.note div{
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+
+@media screen and (max-width: 400px){
+    #notebook{
+        width:100vw;
+        padding: 0%;
+    }
+
+}
