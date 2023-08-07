@@ -61,15 +61,28 @@ const generateMath = () => {
                 state.total -= currentValue || 0;
                 break;
             case('mult'):
-                state.total *= currentValue || 1;
+                if(currentValue === 0){
+                    state.total *= currentValue
+                }else{
+                    state.total *= currentValue || 1;
+                }
                 break;
             case('div'):
-                state.total /= currentValue || 1;
+            if(currentValue === 0){
+                state.total *= currentValue
+            }else{
+                state.total *= currentValue || 1;
+            }
                 break;
         }
 
         state.currentInput = '';
-        lcd.innerHTML = state.total.toFixed(5);
+        if(state.total.toString().length >= 15){
+            lcd.style.overflowX = 'scroll'
+        }else{
+            lcd.style.overflowX = 'hidden'
+        }
+        lcd.innerHTML = state.total.toString().includes('.') ? state.total.toFixed(3) : state.total
     }
 
     // handle operation input
