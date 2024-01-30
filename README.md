@@ -51,7 +51,7 @@ This app is a calculator inspired by the ti30x
 ## **Tiny Note**
 ***Your interest is noted in TinyNote!***
 <p align = "center">
-<img alt="Tiny Note" src="https://github.com/CamChandler98/tiny-assets/blob/main/TinyNoteClip.mov.gif" width="400" height="400">
+<img alt="Tiny Note" src="https://github.com/CamChandler98/tiny-assets/blob/main/TinyNoteClip.mp4.gif" width="400" height="400">
 </p>
 
 This app uses local storage to practice CRUD operations and data validations!
