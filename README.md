@@ -48,6 +48,19 @@ This app is a calculator inspired by the ti30x
 * Enter another number
 * Click enter and marvel!
 
+## **Tiny Note**
+***Your interest is noted in TinyNote!***
+<p align = "center">
+<img alt="Tiny Band" src="https://github.com/CamChandler98/tiny-assets/blob/main/TinyBandClip.mov.gif" width="400" height="400">
+</p>
+
+This app uses local storage to practice CRUD operations and data validations!
+
+###!
+
+* Sign up using the signup button, make sure you read any validation errors!
+* Login after signing up!
+* Leave helpful notes!
 ***
 
 # Code Highlights
@@ -60,7 +73,7 @@ A selection of code snippets that really show what JS can do!
 This function uses HTML Canvas elements to simulate a vibrating string.
 
 
-<details>
+<details open>
 
 <summary>
     Expand to see code
@@ -125,25 +138,35 @@ const vibrateString = (canvas, context, amplitude, decayRate, startCoordinate, e
 ### Record and Play Notes
 
 Finally a reason to put all of the DSA grinding to use! This functionality uses a class for audio data as nodes and a class for recording as a ````linked list````!
+
+<details open>
+
+<summary>
+    Expand to see code
+</summary>
+
 ````javascript
 class AudioNode {
-    constructor(audioElement , timeToNext,name, vibrate, clickFX){
-        this.name = name
-        this.value = audioElement
-        this.timeToNext = timeToNext || null
-        this.next = null
-        this.prev = null
-        this.vibrate = vibrate()
-        this.clickFX = clickFX()
+    // Constructor initializes an AudioNode with several properties
+    constructor(audioElement, timeToNext, name, vibrate, clickFX) {
+        this.name = name; // Name of the audio node
+        this.value = audioElement; // The actual audio element
+        this.timeToNext = timeToNext || null; // Time until next audio node plays
+        this.next = null; // Reference to the next node
+        this.prev = null; // Reference to the previous node
+        this.vibrate = vibrate(); // Function to handle vibration effect
+        this.clickFX = clickFX(); // Function to handle click effect
     }
 
-    async play(){
-        this.value.volume = 1
-        this.clickFX()
-        let vibeInterval = this.vibrate()
-        return await this.value.play()
+    // Asynchronous function to play the audio node
+    async play() {
+        this.value.volume = 1; // Set volume to maximum
+        this.clickFX(); // Execute click effect
+        let vibeInterval = this.vibrate(); // Execute vibration effect
+        return await this.value.play(); // Play the audio and wait for it to finish
     }
 }
+
 
 ````
 
@@ -212,10 +235,11 @@ class AudioNode {
     }
 }
 ````
-
+</details>
 
 
 <u> Key Points: </u>
 
 * Notes are added to the tail of the linked list when recording is toggled
 * To play a recording the linked list class ````SaveRec```` is traversed and the ````play```` method of each note is called.
+
