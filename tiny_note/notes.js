@@ -464,8 +464,11 @@ const generateNotes = () => {
         if (saved) {
             let savedNotes = JSON.parse(saved);
             savedNotes.forEach(note => {
-                let formattedNote = formatNote(note);
-                noteContainer.append(formattedNote);
+                if(note.user === currentUser){
+
+                    let formattedNote = formatNote(note);
+                    noteContainer.append(formattedNote);
+                }
             })
         }
         const noteForm = document.createElement('form');
