@@ -21,7 +21,7 @@ Thats it! Since simplicity is one of the goals of this project it's easy to jump
 ## **Tiny Band**
 ***Become a One Man Band with Tiny Band!***
 <p align = "center">
-<img alt="Tiny Band" src="https://github.com/CamChandler98/tiny-assets/blob/main/TinyMathClip.mov.gif" width="400" height="400">
+<img alt="Tiny Band" src="https://github.com/CamChandler98/tiny-assets/blob/main/TinyBandClip.mov.gif" width="400" height="400">
 </p>
 
 This app simulates instruments using ````HTML Audio```` elements to produce sound and ````HTML Canvas```` elements to provide the user interface.
@@ -33,10 +33,10 @@ This app simulates instruments using ````HTML Audio```` elements to produce soun
 * Click the record button again to stop recording and then click the "Play" button to playback your recording.
 * Make room for a new Jam Session by clicking the "Clear Button"!
 
-## **Tiny Calc**
-***Make a calculated move with Tiny Calc!***
+## **Tiny Math**
+***Make a calculated move with Tiny Math!***
 <p align = "center">
-<img alt="Tiny Band" src="https://github.com/CamChandler98/tiny-assets/blob/main/tiny_calc_screen_cap.png" width="400" height="400">
+<img alt="Tiny Band" src="https://github.com/CamChandler98/tiny-assets/blob/main/TinyMathClip.mov.gif" width="400" height="400">
 </p>
 
 This app is a calculator inspired by the ti30x
