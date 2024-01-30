@@ -60,6 +60,11 @@ A selection of code snippets that really show what JS can do!
 This function uses HTML Canvas elements to simulate a vibrating string.
 
 
+<details>
+
+<summary>
+    Expand to see code
+</summary>
 
 ````javascript
 // Function to create a vibrating effect on a string-like object drawn on a canvas
@@ -107,7 +112,7 @@ const vibrateString = (canvas, context, amplitude, decayRate, startCoordinate, e
     return vibeInterval;
 }
 ````
-
+</details>
 
 
 #### Key Points:
