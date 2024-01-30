@@ -56,7 +56,7 @@ This app is a calculator inspired by the ti30x
 
 This app uses local storage to practice CRUD operations and data validations!
 
-###!
+### Get a clear note with CRUD!
 
 * Sign up using the signup button, make sure you read any validation errors!
 * Login after signing up!
