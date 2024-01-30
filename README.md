@@ -21,7 +21,7 @@ Thats it! Since simplicity is one of the goals of this project it's easy to jump
 ## **Tiny Band**
 ***Become a One Man Band with Tiny Band!***
 <p align = "center">
-<img alt="Tiny Band" src="https://github.com/CamChandler98/tiny-assets/blob/main/tiny_band_screen_cap.png" width="400" height="400">
+<img alt="Tiny Band" src="https://github.com/CamChandler98/tiny-assets/blob/main/TinyMathClip.mov.gif" width="400" height="400">
 </p>
 
 This app simulates instruments using ````HTML Audio```` elements to produce sound and ````HTML Canvas```` elements to provide the user interface.
@@ -62,33 +62,49 @@ This function uses HTML Canvas elements to simulate a vibrating string.
 
 
 ````javascript
-const vibrateString = (canvas, context, amplitude, decayRate, startCoordinate, end, cp1, cp2, color )=> {
-    let absoluteAmplitude = Math.abs(amplitude)
+// Function to create a vibrating effect on a string-like object drawn on a canvas
+const vibrateString = (canvas, context, amplitude, decayRate, startCoordinate, end, cp1, cp2, color ) => {
+    // Calculate the absolute value of amplitude to ensure it's positive
+    let absoluteAmplitude = Math.abs(amplitude);
 
-    let vibeInterval = setInterval(()=>{
-        let lastDigit = Number(String(absoluteAmplitude).slice(-1))
-        let relAmplitude = parseFloat(absoluteAmplitude)
+    // Set an interval to create the vibrating effect
+    let vibeInterval = setInterval(() => {
+        // Extract the last digit of the amplitude for vibration direction calculation
+        let lastDigit = Number(String(absoluteAmplitude).slice(-1));
+        // Parse the absolute amplitude to a float for precise calculations
+        let relAmplitude = parseFloat(absoluteAmplitude);
 
-        if(lastDigit%2 === 0){
-            relAmplitude*=-1
+        // Reverse the amplitude direction on every even last digit
+        if (lastDigit % 2 === 0) {
+            relAmplitude *= -1;
         }
 
-        canvas.width = canvas.width
-        context.moveTo(startCoordinate.x, startCoordinate.y)
+        // Clear the canvas to redraw the string
+        canvas.width = canvas.width; 
+        // Move the drawing cursor to the start coordinate
+        context.moveTo(startCoordinate.x, startCoordinate.y);
 
-        context.bezierCurveTo(cp1.x, cp1.y, cp2.x, cp2.y + relAmplitude, end.x, end.y)
-        context.strokeStyle = color
-        context.stroke()
+        // Draw a bezier curve representing the string with the vibrating effect
+        context.bezierCurveTo(cp1.x, cp1.y, cp2.x, cp2.y + relAmplitude, end.x, end.y);
+        // Set the color of the string
+        context.strokeStyle = color;
+        // Execute the stroke command to render the string
+        context.stroke();
 
-        absoluteAmplitude -= decayRate
-        absoluteAmplitude = absoluteAmplitude.toFixed(2)
+        // Reduce the amplitude over time by the decay rate
+        absoluteAmplitude -= decayRate;
+        // Fix the amplitude to two decimal places for consistent visual effect
+        absoluteAmplitude = absoluteAmplitude.toFixed(2);
 
-        if(absoluteAmplitude <=0){
-            clearInterval(vibeInterval)
+        // Stop the interval and thus the vibration when the amplitude is depleted
+        if (absoluteAmplitude <= 0) {
+            clearInterval(vibeInterval);
         }
 
-    },40)
-    return vibeInterval
+    }, 40); // Execute the interval every 40 milliseconds
+
+    // Return the interval ID for potential external control
+    return vibeInterval;
 }
 ````
 
@@ -104,52 +120,97 @@ const vibrateString = (canvas, context, amplitude, decayRate, startCoordinate, e
 ### Record and Play Notes
 
 Finally a reason to put all of the DSA grinding to use! This functionality uses a class for audio data as nodes and a class for recording as a ````linked list````!
-
-
 ````javascript
+class AudioNode {
+    constructor(audioElement , timeToNext,name, vibrate, clickFX){
+        this.name = name
+        this.value = audioElement
+        this.timeToNext = timeToNext || null
+        this.next = null
+        this.prev = null
+        this.vibrate = vibrate()
+        this.clickFX = clickFX()
+    }
+
     async play(){
-        if(this.length === 0) return
-
-        let currentNote = this.head
-
-        while(currentNote){
-
-            currentNote.play()
-
-            await wait(currentNote.timeToNext)
-
-            currentNote = currentNote.next
-        }
-
+        this.value.volume = 1
+        this.clickFX()
+        let vibeInterval = this.vibrate()
+        return await this.value.play()
     }
-````
+}
 
+````
 
 ````javascript
-    recordNote(val, ttn, name, vibrate, clickFX) {
-
-        let newNode = new AudioNode(val,ttn, name, vibrate, clickFX)
-
-        if (this.length === 0){
-            this.head = newNode;
-            this.tail = newNode;
-            this.length++
-            return
-        }
-
-        let oldTail = this.tail;
-        oldTail.next = newNode;
-        newNode.prev = oldTail;
-
-        this.tail = newNode;
-        this.elements.push(name)
-        this.length++
+   class SaveRec {
+    // Constructor initializes an empty linked list
+    constructor() {
+        this.head = null; // Start of the list
+        this.tail = null; // End of the list
+        this.length = 0; // Number of nodes in the list
+        this.elements = []; // Array to store nodes
     }
 
+    // Method to add a new node at the head of the linked list
+    addToHead(val, ttn) {
+        let newNode = new AudioNode(val, ttn); // Create a new audio node
+
+        if (this.length > 0) {
+            this.head.prev = newNode; // Link new node with the current head
+            newNode.next = this.head; // Set new node's next to current head
+            this.head = newNode; // Update head to the new node
+        } else {
+            this.head = newNode; // For an empty list, new node is both head and tail
+            this.tail = newNode;
+        }
+        this.length++; // Increment the length of the list
+    }
+
+    // Method to add a new node at the tail of the linked list
+    addToTail(val, ttn, name, vibrate, clickFX) {
+        val.volume = 1; // Set the volume of the audio element
+        
+        let newNode = new AudioNode(val, ttn, name, vibrate, clickFX); // Create a new audio node
+
+        if (this.length === 0) {
+            this.head = newNode; // For an empty list, new node is both head and tail
+            this.tail = newNode;
+        } else {
+            let oldTail = this.tail; // Store the current tail
+            oldTail.next = newNode; // Link current tail to new node
+            newNode.prev = oldTail; // Set new node's previous to current tail
+            this.tail = newNode; // Update tail to the new node
+        }
+        this.elements.push(newNode); // Add new node to the elements array
+        this.length++; // Increment the length of the list
+    }
+
+    // Asynchronous method to play all nodes in the linked list in sequence
+    async play() {
+        if (this.length === 0) return; // Do nothing if the list is empty
+
+        let currentNote = this.head; // Start from the head of the list
+
+        while (currentNote) {
+            currentNote.value.volume = 1; // Set volume of current node
+            currentNote.play(); // Play the current node
+            await wait(currentNote.timeToNext); // Wait for the specified time before playing next node
+            if (!currentNote.next) {
+                currentNote.value.volume = 1; // Set volume of last node
+            }
+            currentNote = currentNote.next; // Move to the next node
+        }
+
+        await wait(3000); // Wait for 3 seconds after playing all nodes
+        return true; // Indicate completion
+    }
+}
 ````
+
 
 
 <u> Key Points: </u>
 
-* Notes are added to the tail of the linked list when recording
+* Notes are added to the tail of the linked list when recording is toggled
 * To play a recording the linked list class ````SaveRec```` is traversed and the ````play```` method of each note is called.
